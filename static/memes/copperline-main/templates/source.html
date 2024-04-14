@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Site Description">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap">
+    <meta name="author" content="Mr. Who">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copperline Electric | Setup Source Instance</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/datatables.min.css') }}">
+   
+       <!-- Main Css -->
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+       <!-- Responsive Css -->
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/responsive.css') }}">
+</head>
+
+<body>
+
+	<div class="bodyWrap">
+
+		<div class="dashboard_wraper">
+			<div class="top_menu_area">
+				<div class="topNav">
+					<a href="#" class="admin"><img src="{{ url_for('static', filename='assets/img/user.svg') }}" alt="example"><span>Admin</span></a>
+					<a href="#" class="logOut"><img src="{{ url_for('static', filename='assets/img/logout.svg') }}" alt="logout"></a>
+				</div>
+			</div> <!-- /.top_menu_area -->
+			<div class="mainMenu_area">
+				<div class="mainMenuInne">
+					<a href="#" class="navBrand"><img src="{{ url_for('static', filename='assets/img/logo.svg') }}" alt="logo"></a>
+                    <ul class="mainMenuList menu_list" id="mainMenu">
+                        <li class="menuItem ">
+                            <a href="/">
+                                
+                                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-1.svg') }}" alt="menu-icon"></span>
+                                <span class="navText">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="menuItem ">
+                            <a href="connection">
+                                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-2.svg') }}" alt="menu-icon"></span>
+                                <span class="navText">Setup</span>
+                            </a>
+                        </li>
+                                <li class="menuItem">
+                                    <a href="schedules"><span class="navText">Schedules</span></a>
+                                </li>
+
+                        
+                        
+                        <li class="menuItem">
+                            <a href="source">
+                                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-3.svg') }}" alt="menu-icon"></span>
+                                <span class="navText">Source Instance</span>
+                            </a>
+                        </li>
+                        <li class="menuItem">
+                            <a href="mapping">
+                                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-4.svg') }}" alt="menu-icon"></span>
+                                <span class="navText">Mapping</span>
+                            </a>
+                        </li>
+    
+                    </ul>
+				</div>
+			</div> <!-- /.mainMenu_area -->
+            <div class="dashboard_container">
+                <div class="dashboard_inner_container">
+                    <div class="dashboardTab tabLogReport">
+                        <div class="logReportContainer">
+                            <h2 class="fz24">Source Instance</h2>
+                            <div class="logReportTableBox">
+                                <div class="logFilter">
+                                    <div class="selectAll">
+                                        <input type="checkbox">
+                                        
+                                        <img src="{{ url_for('static', filename='assets/img/arrow_down.svg') }}" alt="arrow_down">
+                                    </div>
+                                    <div class="fillterAll">
+                                        <label for="">Filter: </label>
+                                        <select name="" id="">
+                                            <option value="All">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="logReport_Table">
+                                    <table class="table logReport" id="SourceInstance">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Date</th>
+                                                <th>Data Source</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:15 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    23-01-2023 <br> 05:16 AM
+                                                </td>
+                                                <td>Email</td>
+                                                <td>Invalid entry on PO</td>
+                                                <td>
+                                                    <div class="action_td">
+                                                        <a href="#" class="dootBtn"><img src="assets/img/dots-horizontal.svg" alt="dots"></a>
+                                                        <a href="#" class="penEdit"><img src="assets/img/pencil-alt.svg" alt="pencil"></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.tabDashboard -->
+                </div> <!-- /.dashboard_inner_container -->
+            </div> <!-- /.dashboard_container -->
+        </div>
+
+
+    </div> <!-- /.bodyWrap -->
+
+	<!-- Js -->
+	<script src="{{ url_for('static', filename='assets/img/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/img/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/img/datatables.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/img/active.js') }}"></script>
+</body>
+
+</html>

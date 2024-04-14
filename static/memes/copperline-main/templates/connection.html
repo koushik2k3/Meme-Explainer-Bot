@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Site Description">
+	<meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap">
+	<meta name="author" content="Mr. Who">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Copperline Electric | Setup Connection</title>
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/datatables.min.css') }}">
+
+   <!-- Main Css -->
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+   <!-- Responsive Css -->
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/responsive.css') }}">
+</head>
+<body>
+<div class="bodyWrap">
+
+			<div class="dashboard_wraper">
+				<div class="top_menu_area">
+					<div class="topNav">
+						<a href="#" class="admin"><img src="{{ url_for('static', filename='assets/img/user.svg') }}" alt="example"><span>Admin</span></a>
+						<a href="#" class="logOut"><img src="{{ url_for('static', filename='assets/img/logout.svg') }}" alt="logout"></a>
+					</div>
+				</div> <!-- /.top_menu_area -->
+				<div class="mainMenu_area">
+					<div class="mainMenuInne">
+						<a href="#" class="navBrand"><img src="{{ url_for('static', filename='assets/img/logo.svg') }}" alt="logo"></a>
+						<ul class="mainMenuList menu_list" id="mainMenu">
+							<li class="menuItem ">
+								<a href="/">
+									
+									<span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-1.svg') }}" alt="menu-icon"></span>
+									<span class="navText">Dashboard</span>
+								</a>
+							</li>
+							<li class="menuItem ">
+								<a href="connection">
+									<span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-2.svg') }}" alt="menu-icon"></span>
+									<span class="navText">Setup</span>
+								</a>
+							</li>
+									<li class="menuItem">
+										<a href="schedules"><span class="navText">Schedules</span></a>
+									</li>
+
+							
+							
+							<li class="menuItem">
+								<a href="source">
+									<span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-3.svg') }}" alt="menu-icon"></span>
+									<span class="navText">Source Instance</span>
+								</a>
+							</li>
+							<li class="menuItem">
+								<a href="mapping">
+									<span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-4.svg') }}" alt="menu-icon"></span>
+									<span class="navText">Mapping</span>
+								</a>
+							</li>
+		
+						</ul>
+					</div>
+				</div> <!-- /.mainMenu_area -->
+			<div class="dashboard_container">
+				<div class="dashboard_inner_container">
+					<div class="dashboardTab tabsetupConnection">
+						<div class="setupBox">
+							<h2 class="fz24">Dashboard</h2>
+							<div class="connection_row ">
+								<div class="switchbox connectCol">
+									<div class="switchCheck">
+										<input type="checkbox" name="connectEmail" id="connectEmail">
+										<label for="connectEmail">
+											<span class="switchCircle"></span>
+										</label>
+									</div>
+									<span class="connectLabel">Email</span>
+								</div>
+								<div class="connectInpyt connectCol">
+									<input type="text" class="form-control" placeholder="Welcome to Digital Creative">
+								</div>
+								<div class="connectBtn connectCol">
+									<button type="button" class="Btn">Edit</button>
+								</div>
+							</div> <!-- /.connection_row -->
+							<div class="connection_row ">
+								<div class="switchbox connectCol">
+									<div class="switchCheck">
+										<input type="checkbox" name="connectBox" id="connectBox">
+										<label for="connectBox">
+											<span class="switchCircle"></span>
+										</label>
+									</div>
+									<span class="connectLabel">Box</span>
+								</div>
+								<div class="connectInpyt connectCol">
+									<input type="text" class="form-control" placeholder="Welcome to Digital Creative">
+								</div>
+								<div class="connectBtn connectCol">
+									<button type="button" class="Btn">Edit</button>
+								</div>
+							</div> <!-- /.connection_row -->
+							<div class="connection_row ">
+								<div class="switchbox connectCol">
+									<div class="switchCheck">
+										<input type="checkbox" name="connectSharepoint" id="connectSharepoint">
+										<label for="connectSharepoint">
+											<span class="switchCircle"></span>
+										</label>
+									</div>
+									<span class="connectLabel">Box</span>
+								</div>
+								<div class="connectInpyt connectCol">
+									<input type="text" class="form-control" placeholder="Welcome to Digital Creative">
+								</div>
+								<div class="connectBtn connectCol">
+									<button type="button" class="Btn">Edit</button>
+								</div>
+							</div> <!-- /.connection_row -->
+							<div class="connection_row ">
+								<div class="switchbox connectCol">
+									<div class="switchCheck">
+										<input type="checkbox" name="connectGoogleDrive" id="connectGoogleDrive">
+										<label for="connectGoogleDrive">
+											<span class="switchCircle"></span>
+										</label>
+									</div>
+									<span class="connectLabel">Box</span>
+								</div>
+								<div class="connectInpyt connectCol">
+									<input type="text" class="form-control" placeholder="Welcome to Digital Creative">
+								</div>
+								<div class="connectBtn connectCol">
+									<button type="button" class="Btn">Edit</button>
+								</div>
+							</div> <!-- /.connection_row -->
+						</div>
+						<div class="setupBox connectDestination">
+							<h2 class="fz24">Connection to destination (PO)</h2>
+							<div class="destination_row">
+								<div class="apiCol">
+									API url
+								</div>
+								<div class="destinationInput">
+									<input type="text" class="form-control">
+								</div>
+							</div> <!-- /.connection_row -->
+							<div class="destination_row">
+								<div class="apiCol">
+									API url
+								</div>
+								<div class="destinationInput">
+									<input type="text" class="form-control">
+								</div>
+								<div class="refresh">
+									<a href="javascript:void(0)" class="refresh">
+										src="{{ url_for('static', filename='assets/img/refresh.svg') }}"
+										<img src="{{ url_for('static', filename='assets/img/refresh.svg') }}" alt="refresh"> Refresh
+									</a>
+								</div>
+							</div> <!-- /.connection_row -->
+						</div>
+					</div> <!-- /.tabDashboard -->
+				</div> <!-- /.dashboard_inner_container -->
+			</div> <!-- /.dashboard_container -->
+		</div>
+		
+
+	</div> <!-- /.bodyWrap -->
+	
+	<!-- Js -->
+	<script src="{{ url_for('static', filename='assets/img/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/img/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/img/datatables.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/img/active.js') }}"></script>
+
+</body>
+</html>

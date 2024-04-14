@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Dataframe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <style> 
+
+      .parent-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .no{
+        border: 1px solid black;
+      }
+      .left-container, .right-container {
+        flex: 1 1 50%;
+        box-sizing: border-box;
+      }
+      
+      .item {
+        border: 1px solid black;
+        padding: 10px;
+        height: 200px;
+        margin-bottom: 1px;
+      }
+      .no{
+        height: 35px;
+        border: 1px solid black;
+        margin-bottom: 1px;
+        text-align: center;
+      }
+      
+      .invoice-item, .purchase-order-item {
+        padding-top: 10px;
+        margin-top: 10px;
+      }
+      
+        .approve-btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modify-btn {
+            background-color: yellow;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .clear-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+  <div class="parent-container">
+    <div class="left-container">
+      <div class="no">
+      <h3>{{ inv_no }}</h3></div>
+      {% for index, row in invoice_df.iterrows() %}
+      <div class="item">
+        <div class="container-fluid">
+        <div class="invoice-item">
+          <h3>Item Name : {{ row[inv_column_names[1]] }}</h3>
+          <p class='1'>Quantity : {{ row[inv_column_names[0]] }}<br>Amount : {{ row[inv_column_names[-1]] }}</p>
+        </div>
+      </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="right-container">
+      <div class="no">
+      <h3>{{ po_no }}</h3></div>
+      {% for index, row in purchase_order_df.iterrows() %}
+      <div class="item">
+        <div id="1{{ row[column_names[1]] }}" class="purchase-order-item">
+          <div class="container-fluid" style="height: 25px">
+          <select class="dropdown" onchange="updateItem(this)" style="display:none;">
+            <option value="{{ row[column_names[1]] }}" data-quantity="{{ row[column_names[3]] }}" data-amount="{{ row[column_names[4]] }}">{{ row[column_names[1]] }}</option>
+          </select>
+          </div>
+          <div class="xyz">
+            <h3>Item Name : {{ row[column_names[1]] }}</h3>
+          </div>
+          <div class="abc">
+            <p>Quantity : {{ row[column_names[3]] }}<br> Amount : {{ row[column_names[4]] }}<br></p>
+          </div>
+          <div class='btns'>
+            <button class="approve-btn" style="float: right;">Approve</button>
+            <button class="modify-btn" onclick="modify()">Modify</button>
+            <button class="clear-btn" onclick="clearItem(event)">Clear</button>
+          </div>
+      </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+<script>
+    function clearItem(event) {
+      
+        // Get the parent purchase-order-item element of the clicked Clear button
+        const purchaseOrderItem = event.target.closest('.purchase-order-item');
+        // Get the select element and the currently selected option
+        const select = purchaseOrderItem.querySelector('select');
+        select.style.display = "block";
+
+        const selectedOption = select.options[select.selectedIndex];
+        //console.log(select);
+       
+        const p=document.getElementById(selectedOption.value);
+        //p.remove();
+        const temp1 = selectedOption.value
+        const temp2 = selectedOption.textContent
+        if (temp2!='Select an option...'){
+         selectedQuantity = selectedOption.dataset.quantity;
+         selectedAmount = selectedOption.dataset.amount;    
+        }
+        else{
+          selectedOption.dataset.quantity='';
+          selectedOption.dataset.amount='';   
+        }
+       // console.log(selectedAmount);
+        
+       const options = select.querySelectorAll('option');
+       let alreadyExists = false;
+       options.forEach(option => {
+         if (option.textContent == 'Select an option...') {
+           alreadyExists = true;
+         }
+         
+       });
+       if (!alreadyExists){
+        // Set the selected option to a placeholder value
+        selectedOption.value = '';
+        selectedOption.textContent = 'Select an option...';
+       }else{
+        const selectOptionIndex = Array.from(options).findIndex(option => option.textContent === 'Select an option...');
+        console.log(selectOptionIndex);
+        selectOption = options[selectOptionIndex];
+        //console.log(selectOption);
+        if (selectOption=='Select an option...'){
+        select.removeChild(selectOption);
+        console.log('hello');
+        selectOption=-1;
+        selectedOption.value = '';
+        selectedOption.textContent = 'Select an option...';
+        }
+        //select.add(selectOption, selectOptionIndex);
+       }
+       const parentNode = select.parentNode.parentNode;
+       const div =parentNode.querySelector('.abc');
+       const item =parentNode.querySelector('.xyz')
+       const temp=document.createElement('div');
+       temp.classList.add("temp");
+       const btn=parentNode.querySelector('.btns');    
+       temp.innerHTML = '<p><br><br><br></p>';
+
+       if (div) {
+          div.remove();
+          parentNode.insertBefore(temp, btn);
+        }
+         if (item) {
+          item.remove();
+        }
+
+        // Create a new option element and add it to the select
+        if (temp2!='Select an option...' && !alreadyExists){
+        const option = document.createElement('option');
+        option.value = temp1;
+        option.textContent = temp2;
+        option.dataset.amount=selectedAmount;
+        option.dataset.quantity=selectedQuantity;
+        
+        select.appendChild(option);
+        }
+
+        // Loop through all select elements in the page and add the cleared item as an option
+        const allSelects = document.querySelectorAll('select');
+        allSelects.forEach(s => {
+          // Skip the select element of the current purchase-order-item
+          if (s == select) {
+            return;
+          }
+          
+          const options = s.querySelectorAll('option');
+          let alreadyExists = false;
+          options.forEach(option => {
+            if (option.value === temp1 && option.textContent === temp2) {
+              alreadyExists = true;
+            }
+          });
+          
+          // Create a new option element and add it to the select
+          if (!alreadyExists && temp2!='Select an option...'){
+          const option = document.createElement('option');
+          option.value = temp1;
+          option.textContent = temp2;
+          option.dataset.amount=selectedAmount;
+          option.dataset.quantity=selectedQuantity;
+          s.appendChild(option);
+          }
+        });
+        selectedOption = select.options[select.selectedIndex];
+
+        //if (selectedOption=='Select an option...'){
+////   selectedQuantity ='';
+        //    selectedAmount = '';    
+       //  }
+      }
+      
+      function updateItem(select) 
+      {
+        selectedOption = select.options[select.selectedIndex];
+        const p=document.getElementById(selectedOption.value);
+        //console.log(p);
+        const targetElement = document.getElementById("1"+selectedOption.value);
+        //const targetElement = document.querySelector('#1'+selectedOption.value);
+
+        const selectedQuantity = selectedOption.dataset.quantity;
+        const selectedAmount = selectedOption.dataset.amount;   
+        const parentNode = select.parentNode.parentNode;
+
+        const div =parentNode.querySelector('.abc');
+        const item =parentNode.querySelector('.xyz');
+        const btn=parentNode.querySelector('.btns');
+        const temp=parentNode.querySelector('.temp');
+        if (temp){
+        temp.remove();
+        }
+        if (div) {
+            div.remove();
+          }
+          if (item) {
+            item.remove();
+          }
+         let xyz = document.createElement('div');
+         xyz.classList.add("xyz");
+
+         let h3 = document.createElement('h3');
+         h3.innerText = 'Item Name: '+selectedOption.value;
+         xyz.appendChild(h3);
+         //parentNode.appendChild(xyz);
+         parentNode.insertBefore(xyz, btn);
+
+        let newElement = document.createElement('div');
+        newElement.classList.add("abc");
+
+ 
+        // Set the content of the new element
+        //newElement.textContent ='Quantity: '+selectedQuantity+' Amount:'+selectedAmount;
+        newElement.innerHTML = 'Quantity : ' + selectedQuantity + '<br>' + 'Amount : ' + selectedAmount+'<br>';
+        // Append the new element to the target element
+        //parentNode.appendChild(newElement);
+        parentNode.insertBefore(newElement, btn);
+        selectedOption = select.options[select.selectedIndex];
+        console.log(selectedOption);
+      }
+
+      function modify(){
+        const purchaseOrderItem = event.target.closest('.purchase-order-item');
+        const select = purchaseOrderItem.querySelector('select');
+        select.style.display = "none";
+
+        const selectedOption = select.options[select.selectedIndex];
+        const temp1 = selectedOption.value;
+        const temp2 = selectedOption.textContent;
+        const allSelects = document.querySelectorAll('select');
+        allSelects.forEach(s => {
+          // Skip the select element of the current purchase-order-item
+          if (s === select) {
+            return;
+          }
+          const options = s.querySelectorAll('option');
+          let alreadyExists = false;
+          options.forEach(option => {
+            if (option.value === temp1 && option.textContent === temp2) {
+              alreadyExists = true;
+              console.log(temp2);
+              option.remove();
+            }
+          });
+
+        });
+      }
+</script>
+    
+</body>
+</html>
+

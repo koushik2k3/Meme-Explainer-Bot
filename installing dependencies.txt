@@ -1,0 +1,2 @@
+setx PATH "%PATH%;Tensorflow\protoc\bin" 
+cd Tensorflow\models\research

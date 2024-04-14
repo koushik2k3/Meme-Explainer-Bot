@@ -1,0 +1,26 @@
+<annotation>
+	<folder>kishor</folder>
+	<filename>kishor.772922f8-f93b-11ed-97f6-fc349796177a.jpg</filename>
+	<path>C:\Users\crkpn\Documents\Programs\barani\TFODCourse\Meme Explainer Bot\Tensorflow\workspace\images\collectedimages\kishor\kishor.772922f8-f93b-11ed-97f6-fc349796177a.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>480</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Kishor</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>189</xmin>
+			<ymin>98</ymin>
+			<xmax>405</xmax>
+			<ymax>359</ymax>
+		</bndbox>
+	</object>
+</annotation>

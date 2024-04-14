@@ -1,0 +1,9 @@
+opencv-python
+tensorflow<2.11
+pygments
+openai
+pytesseract
+numpy
+matplotlib
+flask
+flask_wtf
