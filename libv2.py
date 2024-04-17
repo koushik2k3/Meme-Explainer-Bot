@@ -10,7 +10,7 @@ import numpy as np
 import openai
 
 # openai.api_key='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'
-openai.api_key ='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'
+openai.api_key =''
 CUSTOM_MODEL_NAME = 'memes' 
 PRETRAINED_MODEL_NAME = 'ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8'
 PRETRAINED_MODEL_URL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8.tar.gz'
