@@ -9,7 +9,6 @@ import pandas as pd
 import numpy as np
 import openai
 
-# openai.api_key='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'
 openai.api_key =''
 CUSTOM_MODEL_NAME = 'memes' 
 PRETRAINED_MODEL_NAME = 'ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8'
