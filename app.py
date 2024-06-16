@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = 'secretkey'
 class UploadForm(FlaskForm):
     image = FileField('Image')
     submit = SubmitField('Upload')
-
+    
 @app.route('/')
 def home():
     return render_template('index1.html')
