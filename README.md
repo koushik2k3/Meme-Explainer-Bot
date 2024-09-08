@@ -30,17 +30,41 @@ The **Meme Explainer Bot** is a fun and interactive application that uses artifi
 2. Create a virtual environment (optional but recommended):
 
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    conda create --name tf python=3.9
+    conda activate tf
     ```
-
-3. Install the required packages:
+3. GPU setup
+   
+You can skip this section if you only run TensorFlow on CPU.
 
     ```bash
-    pip install -r requirements.txt
+    conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
     ```
+    
+4. Install Tensorflow (Caution: TensorFlow 2.10 was the last TensorFlow release that supported GPU on native-Windows. Starting with TensorFlow 2.11, you will need to install TensorFlow in WSL2, or install tensorflow-cpu and, optionally, try the TensorFlow-DirectML-Plugin)
+   
+        ```bash
+        pip install "tensorflow<2.11"
+        ```
 
-4. Set up the environment variables (e.g., API keys, model paths) in a `.env` file or directly in your environment.
+5. Verify installation
+   
+    Verify the CPU setup:
+       ```bash
+    python -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+        ```
+   If a tensor is returned, you've installed TensorFlow successfully.
+
+   Verify the GPU setup:
+        ```bash
+        python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))" 
+        ```
+    If a list of GPU devices is returned, you've installed TensorFlow successfully.
+ 
+6. Install the required packages using the requirements.txt file:
+
+
+7. Set up the environment variables (e.g., OPEN AI API keys, model paths) in a `.env` file or directly in your environment.
 
 ## Usage
 
