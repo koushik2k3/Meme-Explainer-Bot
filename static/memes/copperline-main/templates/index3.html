@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+       
+    <style>
+      .a1 {
+        display: inline-block;
+        width: 250px; /* Set the same width for both labels */
+        text-align: left; /* Align the text to the left */
+      }
+      
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
+        text-align: left; /* Add this line to center align text */
+      }
+    
+    img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    span{
+      display: inline-block;
+      width: 150px; /* Set the same width for both labels */
+      text-align: left; /* Align the text to the left */
+    }
+      /* Style the input and submit buttons */
+      .input-button {
+        display: inline-block;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .input-button:hover {
+        background-color: #3e8e41;
+      }
+      
+      /* Hide the default file input button */
+      input[type=file] {
+        display: none;
+      }
+      
+      /* Style the custom file input button */
+      .file-input-button {
+        display: inline-block;
+        background-color: #2196f3;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .file-input-button:hover {
+        background-color: #0c7cd5;
+      }
+        .btn {
+        display: inline-block;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .view-button{
+        display: inline-block;
+        padding: 10px ;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;      
+      }
+      .clear-button{
+        display: inline-block;
+        padding: 10px ;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;    
+        width=80px;  
+      }
+      
+      .btn:hover {
+        border: 1px solid black;
+        background-color: #3e8e41;
+      }
+
+      #loader {
+        display: none;
+        position: fixed;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+      }
+      
+      #loader::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 80px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #000;
+        border-color: #000 transparent #000 transparent;
+        animation: loader 1.2s linear infinite;
+      }
+      
+      @keyframes loader {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      button img {
+        width: 30px;
+        height: 20px;
+      }
+      
+    </style>
+  </head>
+  
+  <body>
+    <br>
+    <br>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Image description">
+    <br>
+    <h1>Upload Purchase Order and Invoice</h1>
+    <p>
+    This is a MVP version created for Emerald Engineering to upload and map 
+                    Purchase order with the corresponding invoice
+    </p>
+    <br>
+    <br>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="container-fluid" style="width: 1000px; height: 50px;">
+        <label class="a1" for="po_file">Step 1: Upload a Purchase Order</label>
+        <!-- Use a custom file input button -->
+        <label class="file-input-button" for="po_file">Choose File</label>
+        <!-- Show the selected file name beside the upload button -->
+        <!-- Use a custom input button -->
+        <button class="input-button" type="submit" name="submit_po">Submit</button>
+        <!-- Use a hidden default file input button -->
+        <input type="file" name="po_file" id="po_file" accept="application/pdf" onchange="showFileName('po_file', 'po_file_name')">
+        <!-- Add a clear button to reset the file input and file name -->
+        <span id="po_file_name">{{ msg1 }}</span>
+        <button type="button" class="view-button" name="view_po" style="{{ view_button_style1 }}" onclick="window.location.href='/view1'"><div class="container-fluid" style="width: 50px; height:25px"><img src="{{ url_for('static', filename='eye1.png') }}" alt="View"></div></button>
+        <button type="submit" class="clear-button" name="clear_po" style="{{ clear_button_style1 }}" ><div class="container-fluid" style="width: 60px; height:25px"><img style="width:15px; height:20px"src="{{ url_for('static', filename='close1.png') }}" alt="Clear"></div></button>
+      </div>
+      <div class="container-fluid" style="width: 1000px; height: 50px;">
+        <label class="a1" for="invoice_file">Step 2: Upload a Invoice</label>
+        <!-- Use a custom file input button -->
+        <label class="file-input-button" for="invoice_file">Choose File</label>
+        <!-- Show the selected file name beside the upload button -->
+        <!-- Use a custom input button -->
+        <button class="input-button" type="submit" name="submit_invoice">Submit</button>
+        <!-- Use a hidden default file input button -->
+        <input type="file" name="invoice_file" id="invoice_file" accept="application/pdf" onchange="showFileName('invoice_file', 'invoice_file_name')">
+        <span id="invoice_file_name">{{ msg2}} </span>
+        <button type="button" class="view-button" name="view_invoice" style="{{ view_button_style2 }}" onclick="window.location.href='/view2'" ><div class="container-fluid" style="width: 50px; height:25px"><img src="{{ url_for('static', filename='eye1.png') }}" alt="View"></div></button>
+        <button class="clear-button" name="clear_invoice" type="submit" style="{{ clear_button_style2 }}" onclick="window.location.href='/'" ><div class="container-fluid" style="width: 60px; height:25px"><img style="width:15px; height:20px"src="{{ url_for('static', filename='close1.png') }}" alt="Clear"></div></button>
+	</div>
+  <div class="container-fluid" style="width: 1000px; height: 50px;">
+
+  <div>
+    <label class="a1" for="btn">Step 3: Run AI mapping</label>
+    {% if disabled %}
+    <input type="button" name="btn" class="btn" value="Map"  onclick="showLoader()">
+    {% else %}
+    <input type="button" disabled name="btn" class="btn" value="Map"  onclick="showLoader()">
+    {% endif %}
+    <br>
+    <br>
+    <div id="loader"></div>
+</div>
+</div>
+</form>
+<div >
+  <img src="{{ url_for('static', filename='katpro.png') }}" alt="Image description" style="position: absolute; bottom: 0; right: 0;">
+</div>
+
+</body>
+
+  <script>
+	// Function to show the selected file name beside the upload button
+	function showFileName(inputId, spanId) {
+	  // Get the selected file name
+	  const fileName = document.getElementById(inputId).files[0].name;
+	  // Set the selected file name to the span element
+	  document.getElementById(spanId).textContent = fileName;
+	}
+  function showLoader() {
+    const loader = document.getElementById("loader");
+    loader.style.display = "block";
+    setTimeout(() => {
+      loader.style.display = "none"; // hide the loader
+      window.location.href = "/map";
+    }, 50);
+  }
+  
+  </script>
+
+</html>

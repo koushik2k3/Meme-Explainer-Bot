@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>My Dataframe</title>
+        <style>
+            /* Add your CSS styles here */
+            body {
+
+              font-family: Arial, sans-serif;
+              font-size: 16px;
+              line-height: 1.5;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center; /* Add this line to center align text */
+            }
+  
+            label {
+              display: block;
+              margin-bottom: 10px;
+            }
+            
+            input[type="file"] {
+              margin-bottom: 10px;
+            }
+            
+            h2 {
+              margin-top: 20px;
+              margin-bottom: 10px;
+            }
+            
+            p {
+              margin: 0 0 10px;
+            }
+            
+            .error {
+              color: red;
+            }
+            
+            .success {
+              color: green;
+            }
+            .clear-btn {
+                background-color: red;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        {% if error2 %}
+        <p class="error">{{ error2 }}</p>
+      {% elif success2 %}
+        <p class="success">{{ success2 }}</p>
+        <h2>Purchase Order</h2>    <input type="button" class="clear" value="Go Back" onclick="window.location.href = '/'">
+        {{ html_table|safe }}
+      {% endif %}
+
+      {% if error1 %}
+      <p class="error">{{ error1 }}</p>
+    {% elif success1 %}
+      <p class="success">{{ success1 }}</p>
+      <h2>Invoice</h2>    <input type="button" class="clear" value="Go Back" onclick="window.location.href = '/'">
+      {{ html_table|safe }}
+    {% endif %}
+    </body>
+    </html>

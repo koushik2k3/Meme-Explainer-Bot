@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Site Description">
+	<meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap">
+	<meta name="author" content="Mr. Who">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Copperline Electric | Connection - Invoice & PO</title>
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/datatables.min.css') }}">
+
+	<!-- Main Css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<!-- Responsive Css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/responsive.css') }}">
+<style>
+    .approve-btn {
+        background-color: #90EE90;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .modify-btn {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .clear-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+  table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+  
+  td {
+    padding: 10px;
+    word-wrap: break-word;
+  }
+
+</style>
+</head>
+<body>
+
+
+	<div class="bodyWrap">
+
+		<div class="dashboard_wraper">
+			<div class="top_menu_area">
+				<div class="topNav">
+					<a href="#" class="admin"><img src="{{ url_for('static', filename='assets/img/user.svg') }}" alt="example"><span>Admin</span></a>
+					<a href="#" class="logOut"><img src="{{ url_for('static', filename='assets/img/logout.svg') }}" alt="logout"></a>
+				</div>
+			</div> <!-- /.top_menu_area -->
+			<div class="mainMenu_area">
+				<div class="mainMenuInne">
+					<a href="#" class="navBrand"><img src="{{ url_for('static', filename='assets/img/logo.svg') }}" alt="logo"></a>
+          <ul class="mainMenuList menu_list" id="mainMenu">
+            <li class="menuItem ">
+              <a href="/">
+                
+                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-1.svg') }}" alt="menu-icon"></span>
+                <span class="navText">Dashboard</span>
+              </a>
+            </li>
+            <li class="menuItem ">
+              <a href="connection">
+                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-2.svg') }}" alt="menu-icon"></span>
+                <span class="navText">Setup</span>
+              </a>
+            </li>
+                <li class="menuItem">
+                  <a href="schedules"><span class="navText">Schedules</span></a>
+                </li>
+
+            
+            
+            <li class="menuItem">
+              <a href="source">
+                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-3.svg') }}" alt="menu-icon"></span>
+                <span class="navText">Source Instance</span>
+              </a>
+            </li>
+            <li class="menuItem">
+              <a href="mapping">
+                <span class="navIcon"><img src="{{ url_for('static', filename='assets/img/menu-icon-4.svg') }}" alt="menu-icon"></span>
+                <span class="navText">Mapping</span>
+              </a>
+            </li>
+  
+          </ul>
+				</div>
+			</div> <!-- /.mainMenu_area -->
+			<div class="dashboard_container">
+				<div class="connectInvoiceArea TabpurchesOrder dashboard_inner_container ">
+          
+					<div class="dashboardTab">
+              <div style="
+                  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Arrange items vertically */
+              ">
+
+                <h3   > Mapping Insight</h3>
+
+              <br>
+              <table> 
+        
+                <tr>
+                  <td>Total PO Items:</td>
+                  <td>{{ po_ct }}</td>
+                  <td>Total Invoice Items:</td>
+                  <td>{{ inv_ct }}</td>
+                </tr>
+                <tr>
+                  <td>Auto Matched:</td>
+                  <td>{{ inv_ct }}</td>
+                  <td>Approved:</td>
+                  <td><span id="approved-count">0</span></td>
+                </tr>
+              </table>
+              <button onclick="redirectToRoute('/mapping?po={{ po_no}}')">Full Approve</button>
+
+            </div>
+                        <div class="connectInvoiceContainer">
+                            <div class="row">
+                            
+                                <div class="col-6">
+                                 
+                                  <div class="connectPurchesCol connectInvoiceCol">
+                                    <h2 class="connectInvoiceTitle">Purchase Order</h2>
+                                    {% for index, row in purchase_order_df.iterrows() %}    
+                                    <!-- <div id="1{{ row[column_names[1]] }}" class="purchase-order-item"> -->
+                                    <div class="connectInvoiceItem purchase-order-item">
+
+                                        <div class="container-fluid" style="height: 35px">
+                                            <select class="dropdown form-control" onchange="updateItem(this)" style="display:none;">
+                                              <option value="{{ row[inv_column_names[1]] }}" data-quantity="{{ row[inv_column_names[0]] }}" data-amount="{{ row[inv_column_names[2]] }}">{{ row[inv_column_names[1]] }}</option>
+                                            </select>
+                                          </div>
+                                          <br>
+                                          <div class="xyz fw-bold">
+                                            Item Name : {{ row[inv_column_names[1]] }}
+                                          </div>
+                                          <div class="abc">
+                                            <p class='1'>
+
+                                                    <div class="grayBox">
+                                                        Quantity : {{ row[inv_column_names[0]] }}
+                                                    </div>
+                                                    <div class="grayBox">
+                                                        Unit Cost : {{ row[inv_column_names[2]] }}
+                                                    </div>  
+                                            </p>
+                                          </div>
+                                          <div class='btns'>
+                                            <button class="approve-btn" style="float: right;" onclick="approveItem(this)">Approve</button>
+                                            <button class="modify-btn" onclick="modify()">Modify</button>
+                                            <button class="clear-btn" onclick="clearItem(event)">Clear</button>
+                                          </div>
+
+                                    </div> <!-- /.connectInvoiceItem -->
+
+                                {% endfor %} 
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="connectInvoiceCol purchase-order-item">
+                                  <h2 class="connectInvoiceTitle">Invoices</h2>
+                                  {% for index, row in invoice_df.iterrows() %}
+
+                                  <div class="connectInvoiceItem " >
+                                    <div class="invouceId">
+                                      <a href="#" style="color: {{ getInvoiceColor(row[column_names[4]]) }}"><b>Invoice ID {{ row[column_names[4]] }}</b></a> <br>
+                                      <a href="#" style="color: {{ getInvoiceColor(row[column_names[4]]) }}"><b>Invoice Date: {{ row[column_names[5]] }}</b></a>
+                                    </div>
+                                    <p class="fw-bold">
+                                      {{ row[column_names[1]] }}
+                                    </p>
+                                    <div class="grayBox">
+                                      Quantity: {{ row[column_names[0]] }}
+                                    </div>
+                                    <div class="grayBox">
+                                      Unit Cost: {{ row[column_names[2]] }}
+                                    </div>
+
+                                  </div><!-- /.connectInvoiceItem -->
+
+                                  {% endfor %}                               
+                                </div>
+                              </div>
+                                </div>
+                            </div>
+                        </div>
+					</div> <!-- /.tabDashboard -->
+				</div> <!-- /.dashboard_inner_container -->
+			</div> <!-- /.dashboard_container -->
+		</div>
+		
+
+	</div> <!-- /.bodyWrap -->
+	
+	<!-- Js -->
+  <script>
+    function redirectToRoute(route) {
+        window.location.href = route;
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Initially hide all divs except the first one
+        $('.task-div').hide();
+        $('#task-div-1').show();
+        
+        // Handle button clicks
+        $('.button').click(function () {
+            // Get the button id and extract the div number
+            var buttonId = $(this).attr('id');
+            var divNumber = buttonId.substring(buttonId.length - 1);
+            
+            // Hide all divs and show the corresponding div
+            $('.task-div').hide();
+            $('#task-div-' + divNumber).show();
+        });
+    });
+</script>
+	<script src="{{ url_for('static', filename='assets/img/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/img/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/img/datatables.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/img/active.js') }}"></script>
+  <script>
+    function getInvoiceColor(invoiceId) {
+      // Define colors for different invoice IDs
+      const colors = {
+        'A': '#ff0000', // Red
+        'B': '#00ff00', // Green
+        'C': '#0000ff', // Blue
+        // Add more colors for different invoice IDs as needed
+      };
+      
+      // Get the color based on the invoice ID
+      const color = colors[invoiceId] || '#cccccc'; // Default color if not found
+      
+      return color;
+    }
+  </script>
+  
+    <script>
+        let counter = 0; // initialize counter variable
+      
+        function approveItem(button) {
+          if (!button.dataset.approved){
+            counter++;
+          button.innerHTML='Approved';
+          button.dataset.approved = 'true';
+          document.getElementById('approved-count').innerHTML = counter;
+          button.style.backgroundColor = 'darkgreen';
+      
+          }
+          console.log('Counter:', counter); // for testing purposes only
+        }
+      
+          function clearItem(event) {
+            
+              console.log('Counter:', counter); // for testing purposes only
+              // Get the parent purchase-order-item element of the clicked Clear button
+              const purchaseOrderItem = event.target.closest('.purchase-order-item');
+              approveBtn = purchaseOrderItem.querySelector('.approve-btn');
+              if (approveBtn.dataset.approved) {
+                counter--;
+                approveBtn.style.backgroundColor = '#90EE90';
+                approveBtn.innerHTML='Approve';
+                approveBtn.dataset.approved = '';
+                document.getElementById('approved-count').innerHTML = counter;
+              }
+              // Get the select element and the currently selected option
+              const select = purchaseOrderItem.querySelector('select');
+              select.style.display = "block";
+      
+              const selectedOption = select.options[select.selectedIndex];
+              //console.log(select);
+             
+              const p=document.getElementById(selectedOption.value);
+              //p.remove();
+              const temp1 = selectedOption.value
+              const temp2 = selectedOption.textContent
+              if (temp2!='Select an option...'){
+               selectedQuantity = selectedOption.dataset.quantity;
+               selectedAmount = selectedOption.dataset.amount;    
+              }
+              else{
+                selectedOption.dataset.quantity='';
+                selectedOption.dataset.amount='';   
+              }
+             // console.log(selectedAmount);
+              
+             const options = select.querySelectorAll('option');
+             let alreadyExists = false;
+             options.forEach(option => {
+               if (option.textContent == 'Select an option...') {
+                 alreadyExists = true;
+               }
+               
+             });
+             if (!alreadyExists){
+              // Set the selected option to a placeholder value
+              selectedOption.value = '';
+              selectedOption.textContent = 'Select an option...';
+             }else{
+              selectOptionIndex = Array.from(options).findIndex(option => option.textContent === 'Select an option...');
+              console.log(selectOptionIndex);
+              selectOption = options[selectOptionIndex];
+              //console.log(selectOption);
+              if (selectOption=='Select an option...'){
+              select.removeChild(selectOption);
+              console.log('hello');
+              selectOption=-1;
+              selectedOption.value = '';
+              selectedOption.textContent = 'Select an option...';
+              }
+              //select.add(selectOption, selectOptionIndex);
+             }
+             const parentNode = select.parentNode.parentNode;
+             const div =parentNode.querySelector('.abc');
+             const item =parentNode.querySelector('.xyz')
+             const temp=document.createElement('div');
+             temp.classList.add("temp");
+             const btn=parentNode.querySelector('.btns');    
+             temp.innerHTML = '<p><br><br><br></p>';
+      
+             if (div) {
+                div.remove();
+                parentNode.insertBefore(temp, btn);
+              }
+               if (item) {
+                item.remove();
+              }
+      
+              // Create a new option element and add it to the select
+              if (temp2!='Select an option...' && !alreadyExists){
+              const option = document.createElement('option');
+              option.value = temp1;
+              option.textContent = temp2;
+              option.dataset.amount=selectedAmount;
+              option.dataset.quantity=selectedQuantity;
+              
+              select.appendChild(option);
+              }
+      
+              // Loop through all select elements in the page and add the cleared item as an option
+              const allSelects = document.querySelectorAll('select');
+              allSelects.forEach(s => {
+                // Skip the select element of the current purchase-order-item
+                if (s == select) {
+                  return;
+                }
+                
+                const options = s.querySelectorAll('option');
+                let alreadyExists = false;
+                options.forEach(option => {
+                  if (option.value === temp1 && option.textContent === temp2) {
+                    alreadyExists = true;
+                  }
+                });
+                
+                // Create a new option element and add it to the select
+                if (!alreadyExists && temp2!='Select an option...'){
+                const option = document.createElement('option');
+                option.value = temp1;
+                option.textContent = temp2;
+                option.dataset.amount=selectedAmount;
+                option.dataset.quantity=selectedQuantity;
+                s.appendChild(option);
+                }
+              });
+              selectedOption = select.options[select.selectedIndex];
+      
+              //if (selectedOption=='Select an option...'){
+      ////   selectedQuantity ='';
+              //    selectedAmount = '';    
+             //  }
+            }
+            
+            function updateItem(select) 
+            {
+              selectedOption = select.options[select.selectedIndex];
+              const p=document.getElementById(selectedOption.value);
+              //console.log(p);
+              const targetElement = document.getElementById("1"+selectedOption.value);
+              //const targetElement = document.querySelector('#1'+selectedOption.value);
+      
+              const selectedQuantity = selectedOption.dataset.quantity;
+              const selectedAmount = selectedOption.dataset.amount;   
+              const parentNode = select.parentNode.parentNode;
+      
+              const div =parentNode.querySelector('.abc');
+              const item =parentNode.querySelector('.xyz');
+              const btn=parentNode.querySelector('.btns');
+              const temp=parentNode.querySelector('.temp');
+              if (temp){
+              temp.remove();
+              }
+              if (div) {
+                  div.remove();
+                }
+                if (item) {
+                  item.remove();
+                }
+               let xyz = document.createElement('div');
+               xyz.classList.add("xyz");
+               xyz.classList.add("fw-bold");
+              
+
+               xyz.innerText = 'Item Name: '+selectedOption.value;
+
+               //parentNode.appendChild(xyz);
+               parentNode.insertBefore(xyz, btn);
+      
+              let newElement = document.createElement('div');
+              newElement.classList.add("abc");
+      
+              let box1 = document.createElement('div');
+              box1.classList.add("grayBox");
+
+              // Set the content of the new element
+              //newElement.textContent ='Quantity: '+selectedQuantity+' Amount:'+selectedAmount;
+              box1.innerHTML = 'Quantity : ' + selectedQuantity; 
+              newElement.appendChild(box1);
+              let box2 = document.createElement('div');
+              box2.classList.add("grayBox");
+              box2.innerHTML = 'Amount : '+selectedAmount;
+              newElement.appendChild(box2);
+              // Append the new element to the target element
+              //parentNode.appendChild(newElement);
+              parentNode.insertBefore(newElement, btn);
+              selectedOption = select.options[select.selectedIndex];
+              console.log(selectedOption);
+            }
+      
+            function modify(){
+              const purchaseOrderItem = event.target.closest('.purchase-order-item');
+              const select = purchaseOrderItem.querySelector('select');
+              select.style.display = "none";
+      
+              const selectedOption = select.options[select.selectedIndex];
+              const temp1 = selectedOption.value;
+              const temp2 = selectedOption.textContent;
+              const allSelects = document.querySelectorAll('select');
+              allSelects.forEach(s => {
+                // Skip the select element of the current purchase-order-item
+                if (s === select) {
+                  return;
+                }
+                const options = s.querySelectorAll('option');
+                let alreadyExists = false;
+                options.forEach(option => {
+                  if (option.value === temp1 && option.textContent === temp2) {
+                    alreadyExists = true;
+                    console.log(temp2);
+                    option.remove();
+                  }
+                });
+      
+              });
+            }
+      </script>
+
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  header {
+    height: 60px;
+    background-color:#fff;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+  }
+  
+  header a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  header a:hover {
+    color: #ccc;
+  }
+  
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  section {
+    flex: 1;
+    min-width: 300px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  section h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  section p {
+    margin: 10px 0;
+    text-align: justify;
+  }
+  
+  section ul {
+    margin-top: 20px;
+    list-style: none;
+    text-align: center;
+  }
+  
+  section ul li {
+    display: inline-block;
+    margin: 10px;
+  }
+  
+  section ul li a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 1rem;
+    background-color: #ddd;
+    border-radius: 50%;
+  }
+  
+  .social-icons a:hover {
+    background-color: #555;
+  }
+  
+  .social-icons a i {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .social-icons a.github {
+    background-image: url('https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Github-512.png');
+    background-size: cover;
+  }
+  
+  .social-icons a.linkedin {
+    background-image: url('https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Linkedin_unofficial_colored_svg-512.png');
+    background-size: cover;
+  }
+  
+  .team-member img {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    font-size: 24px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    background-size: cover;
+  }
+  
+  .social-icons a.linkedin {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/174/174857.png');
+  }
+  
+  .social-icons a.github {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/25/25231.png');
+  }
+  
+  .team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center
+  }  
+
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
+  button {
+	background-color: #000;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: 400;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+	background-color: #333;
+}

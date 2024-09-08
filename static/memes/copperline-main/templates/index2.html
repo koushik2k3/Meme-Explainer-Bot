@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask App - DataFrame Swap</title>
+  </head>
+  <body>
+    <h1>Flask App - DataFrame Swap</h1>
+    <form method="POST" action="/">
+      <label for="selected_column">Select Column:</label>
+      <select name="selected_column" id="selected_column">
+        {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <br>
+      <label for="first_entry">First Entry:</label>
+      <select name="first_entry" id="first_entry">
+        {% for item in unique_items %}
+        <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <br>
+      <label for="second_entry">Second Entry:</label>
+      <select name="second_entry" id="second_entry">
+        {% for item in unique_items %}
+        <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <br>
+      <input type="submit" value="Swap">
+    </form>
+  </body>
+</html>

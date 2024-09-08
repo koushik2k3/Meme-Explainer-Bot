@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-UTWSc6jRv6f9B6peNHYsjIVWk3qfWs6jn/7G2BHl6wX9PjMk+eiCcwR6fn/vH6UdSZ6uv+1GgLJ8a3Swb6+9ag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+  </head>
+  <body>
+    <header>
+
+      <nav class="navigation">
+        <a href="{{ url_for('home') }}"><button>Home</button></a>
+        <a href="{{ url_for('project') }}"><button>Project</button></a>
+        <a href="{{ url_for('contact') }}"><button>Contact Us</button></a>
+      </nav>
+      
+    </header>
+    <main>
+
+      <section class="hero">
+        <div class="hero-overlay">
+          <h1>About Us</h1>
+          <p>We are a team of five individuals who have worked together on deep learning projects using the Google Crash Course to learn about neural networks. We have gained experience in training, testing, and optimizing models to solve various problems such as image classification, natural language processing, and more. Inspired by our passion for humor and memes, we came up with the idea of creating a meme generator bot using deep learning techniques. Our bot uses a generative model to create unique and humorous memes based on a user's input. We trained our model on a large dataset of popular memes to ensure that the generated content is both relevant and funny.
+           <br>
+            We believe that our project has the potential to bring joy and entertainment to a wide audience, and we are excited to continue developing and refining our bot in the future. <br>we learned the ins and outs of building neural networks and applying them to various real-world applications. Inspired by our newfound knowledge, we decided to put our skills to the test and came up with the idea of a meme generator bot.
+Our goal was to create a machine learning model that could generate humorous memes based on user input. We trained the model using a large dataset of pre-existing memes and then fine-tuned it to produce novel and creative outputs. After weeks of development and testing, we successfully built a functional meme generator bot that can produce a wide variety of memes with just a few simple prompts.
+<br>
+Overall, our project was a challenging but rewarding experience that allowed us to dive deep into the exciting world of deep learning and machine learning. We look forward to exploring more innovative ideas and continuing our journey in this rapidly-evolving field
+        </p>
+        </div>
+      </section>
+      <section class="team">
+        <h2>Meet the Team</h2>
+        <div class="team-member">
+
+          <img src="{{ url_for('static', filename='images/kishor.jpg')}}" alt='Kishor'>
+
+          <h3>M Kishor</h3>
+          <p>AI-ML,DL</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/kishor-m-344889242/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/KishorEcsT" target="_blank" class="github"><i class="fab fa-github"></i></a>
+          </div>
+          
+        </div>
+        <br>
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/kp kousa.jpg')}}" alt='Koushik KP'>
+          <h3>Koushik KP</h3>
+          <p>AI-ML,DL</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/koushik-kp-ab2625255/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/koushik2k3" target="_blank" class="github"><i class="fab fa-github"></i></a>
+          </div>
+          
+        </div>
+        <br>
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/gaja.jpg')}}" alt='Gaja'>
+
+          <h3>Gaja Prasanth</h3>
+          <p>AI-ML,DL</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="http://github.com/gaja1595" target="_blank" class="github"><i class="fab fa-github"></i></a>
+          </div>
+          
+        </div>
+        <br>
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/mithun.jpg')}}" alt='Gaja'>
+
+          <h3>V Mithun Bharathi</h3>
+          <p>AI-ML,DL</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/mithun-bharathi-75926324b/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/" target="_blank" class="github"><i class="fab fa-github"></i></a>
+          </div>
+          
+        </div>
+        <br>
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/barani.png')}}" alt='Gaja'>
+
+          <h3>R Bharani Rajan</h3>
+          <p>AI-ML,DL</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/" target="_blank" class="github"><i class="fab fa-github"></i></a>
+          </div>
+          
+        </div>
+        <br>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Company Name. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+item { 
+	name:'Distracted_boyfriend'
+	id:1
+}
+item { 
+	name:'This_is_fine'
+	id:2
+}
+item { 
+	name:'Flex_tape'
+	id:3
+}
+item { 
+	name:'Real_estate'
+	id:4
+}
+item { 
+	name:'Arthur_fist'
+	id:5
+}
+item { 
+	name:'Surprised_pikachu'
+	id:6
+}

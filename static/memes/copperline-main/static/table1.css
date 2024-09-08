@@ -1,0 +1,39 @@
+/* Set font family and size */
+table {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  /* Add some padding to cells */
+  table td,
+  table th {
+    padding: 10px;
+  }
+  
+  /* Set alternating row colors */
+  table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Add a border to the table */
+  table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  /* Add a border to the table headers */
+  table th {
+    border: 1px solid #ddd;
+  }
+  
+  /* Set the font weight and background color of the table headers */
+  table th {
+    font-weight: bold;
+    background-color: #f9f9f9;
+  }
+  
+  /* Add hover effect to table rows */
+  table tbody tr:hover {
+    background-color: #ddd;
+  }
+  

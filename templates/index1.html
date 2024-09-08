@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meme-Explainer Bot</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/111-1116375_robotics-and-computer-science-black-and-white-robot.png')}}" alt='Robot Icon' width='50' height='30'>
+        Meme-Explainer Bot
+      </div>
+      <nav class="navigation">
+        <a href="{{ url_for('project') }}"><button>Project</button></a>
+        <!-- <a href="{{ url_for('aboutus') }}"><button>About Us</button></a> -->
+        <a href="{{ url_for('contact') }}"><button>Contact Us</button></a>
+      </nav>
+      
+    </header>
+    
+    <section class="hero">
+      <div class="content">
+        <h1>Meme-Explainer Bot</h1>
+        <p>Explaining the funniest memes on the internet. </p>
+        <a href="{{ url_for('project') }}"><button>Get Started</button></a>
+
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2023 Meme-Explainer Bot. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>
