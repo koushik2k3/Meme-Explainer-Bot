@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Meme Explainer Bot** is a fun and interactive application that uses artificial intelligence to explain memes and their context. This bot leverages natural language processing and image recognition to analyze memes and provide insightful descriptions and background information.
+The **Meme Explainer Bot** is a fun and interactive application that uses artificial intelligence to explain memes and their context. This bot leverages natural language processing and image recognition to analyze memes and provide insightful descriptions and background information. Currently trained on templates - {Arthur's fist, Surprised Pikachu, It's free real estate, This is fine dog, Distracted Boyfriend and Flex Tape}
 
 ![Output](https://github.com/user-attachments/assets/789c3da3-e217-47ff-9184-d413dc2648fa)
 
